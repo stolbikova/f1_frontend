@@ -1,7 +1,8 @@
 # Description
 
-Test assignment with a product feed
-Name, description and price in every card in the product feed can be edited. Photo can be attached when you click on photo overlay.
+Test assignment. Frontend for f1
+Two pages: home and season/:year
+
 
 <br>
 
