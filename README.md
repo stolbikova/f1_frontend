@@ -3,6 +3,12 @@
 Test assignment. Frontend for f1
 Two pages: home and season/:year
 
+## Contains
+
+- [x] [Typescript](https://www.typescriptlang.org/) 4.8
+- [x] [React](https://facebook.github.io/react/) 18.0
+- [x] [React Router](https://github.com/ReactTraining/react-router) 6.4
+- [x] [Material design ui component library](https://mui.com/)
 
 <br>
 

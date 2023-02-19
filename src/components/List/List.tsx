@@ -8,8 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-import { UiData } from '@src/types';
 import { useNavigate } from "react-router-dom";
+import './List.css';
+import {UiData} from '@src/types';
 
 
 interface ListProps {
@@ -33,13 +34,15 @@ export const List: React.FC<ListProps> = ({data, onPageChange, loading}) => {
         navigate(`/season/${data[idx].season}`);
     }
 
+    const headerCellStyle = { fontWeight: '700' }
+
     return (
         <TableContainer component={Paper} sx={{ display: 'flex', justifyContent: 'center' }} >
             <Table sx={{ maxWidth: 350 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Season</TableCell>
-                        <TableCell align="right">Winner</TableCell>
+                        <TableCell style={headerCellStyle}>Season</TableCell>
+                        <TableCell align="right" style={headerCellStyle}>Winner </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
