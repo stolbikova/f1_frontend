@@ -1,24 +1,3 @@
-::selection {
-  background: var(--selection-bgcolor);
-  color: var(--selection-color);
-}
-
-::-webkit-scrollbar {
-  width: var(--scroll-width);
-
-  &-track {
-    background: var(--scroll-track-bgcolor);
-  }
-
-  &-thumb {
-    background: var(--scroll-thumb-bgcolor);
-  }
-
-  &-thumb:hover {
-    background: var(--scroll-thumb-hover-bgcolor);
-  }
-}
-
 html,
 body {
   height: 100%;
@@ -33,15 +12,6 @@ input:focus-visible, textarea:focus-visible
   outline-style: none; 
   box-shadow: none; 
   border-color: transparent;
-}
-
-body {
-  margin: 0;
-  font-size: var(--app-font-size);
-  font-family: var(--app-font-family);
-  color: var(--app-color);
-  background: var(--app-bgcolor);
-  line-height: 1.5;
 }
 
 h1 {

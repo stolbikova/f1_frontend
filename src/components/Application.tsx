@@ -1,14 +1,14 @@
 import './Application.css';
 import {
   RouterProvider,
-  createBrowserRouter,
+  createHashRouter
 } from "react-router-dom";
 import { Season } from './Season/Season';
-import React, { useEffect, useState } from 'react';
-import { F1_API, ROW_LIMIT, START_F1_YEAR, CUR_YEAR } from '@src/constants';
-import { getYears, getWinner } from '@src/utils/utils';
+import { useEffect, useState } from 'react';
+import { getWinner } from '@src/utils/utils';
 import { ResultF1Data, UiData } from '@src/types';
 import {List} from '@src/components/List/List';
+import { fetchF1Data } from '@src/utils/fetchData';
 
 const Application: React.FC = () => {
   const [store, setStore] = useState<ResultF1Data []>([]);
@@ -21,18 +21,9 @@ const Application: React.FC = () => {
 
   const fetchData = async ({ page }: { page: number }) => {
       setLoading(true);
-      const from = START_F1_YEAR + (page * ROW_LIMIT);
-      let to = from + ROW_LIMIT - 1;
-      if (to > CUR_YEAR) to = CUR_YEAR - 1;
+      const fetchedData: ResultF1Data[] = await fetchF1Data({page});
 
-      const years: number[] = getYears({ from, to });
-      const urls = years.map(y => `${F1_API}/${y}/results.json`);
-      const fetchedData: ResultF1Data[] = await Promise.all(urls.map(async url => {
-          const resp = await fetch(url);
-          return resp.json();
-      }));
-
-      setStore(prevStore => ([...prevStore,...fetchedData]));
+      setStore(prevStore => ([...prevStore, ...fetchedData]));
       const parsedData: UiData[] = fetchedData.map(i => {
           const w = getWinner(i.MRData.RaceTable.Races);
           return ({
@@ -48,7 +39,7 @@ const Application: React.FC = () => {
   const handlePageChange = (page: number) => {
       fetchData({ page });
   }
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: '',
       element: <List data={seasonList} onPageChange={handlePageChange} loading={loading}></List>
