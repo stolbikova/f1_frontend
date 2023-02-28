@@ -1,6 +1,6 @@
 # Description
 
-Test assignment. Frontend for f1
+Frontend for f1. List winners from 2005 year to now. 
 Two pages: home and season/:year
 
 ## Contains
